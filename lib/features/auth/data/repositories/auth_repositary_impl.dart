@@ -5,9 +5,8 @@ import 'package:blog_app/features/auth/domain/repository/auth_repository.dart';
 import 'package:fpdart/fpdart.dart';
 
 class AuthRepositaryImpl implements AuthRepository {
-  final AuthRemoteDataSource authRemoteDataSource;
-  AuthRepositaryImpl(this.authRemoteDataSource);
-
+  final AuthRemoteDataSource remoteDataSource;
+  const AuthRepositaryImpl(this.remoteDataSource);
   @override
   Future<Either<Failure, String>> logInWithEmailPassword(
       {required String email, required String password}) {
@@ -21,16 +20,14 @@ class AuthRepositaryImpl implements AuthRepository {
       required String email,
       required String password}) async {
     try {
-      final userId = await authRemoteDataSource.signInWithEmailPassword(
+      final userId = await remoteDataSource.signInWithEmailPassword(
         name: name,
         email: email,
         password: password,
       );
       return right(userId);
     } on ServerExecption catch (e) {
-      return left(
-        Failure(e.message),
-      );
+      return left(Failure(e.toString()));
     }
   }
 }
