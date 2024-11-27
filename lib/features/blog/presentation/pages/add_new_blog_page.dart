@@ -116,10 +116,10 @@ class _AddNewBlogPageState extends State<AddNewBlogPage> {
                               radius: const Radius.circular(10),
                               strokeCap: StrokeCap.round,
                               dashPattern: const [10, 4],
-                              child: Container(
+                              child: const SizedBox(
                                 height: 150,
                                 width: double.infinity,
-                                child: const Column(
+                                child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Icon(

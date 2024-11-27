@@ -1,25 +1,25 @@
 import 'package:blog_app/features/blog/domain/entities/blog.dart';
 
 class BlogModel extends Blog {
-  BlogModel({
-    required super.id,
-    required super.posterID,
-    required super.title,
-    required super.content,
-    required super.imageUrl,
-    required super.topics,
-    required super.updatedAt,
-  });
+  BlogModel(
+      {required super.id,
+      required super.posterID,
+      required super.title,
+      required super.content,
+      required super.imageUrl,
+      required super.topics,
+      required super.updatedAt,
+      super.posterName});
 
-  BlogModel copyWith({
-    String? id,
-    String? posterID,
-    String? title,
-    String? content,
-    String? imageUrl,
-    List<String>? topics,
-    DateTime? updatedAt,
-  }) {
+  BlogModel copyWith(
+      {String? id,
+      String? posterID,
+      String? title,
+      String? content,
+      String? imageUrl,
+      List<String>? topics,
+      DateTime? updatedAt,
+      String? posterName}) {
     return BlogModel(
       id: id ?? this.id,
       posterID: posterID ?? this.posterID,
@@ -28,6 +28,7 @@ class BlogModel extends Blog {
       imageUrl: imageUrl ?? this.imageUrl,
       topics: topics ?? this.topics,
       updatedAt: updatedAt ?? this.updatedAt,
+      posterName: posterName ?? this.posterName,
     );
   }
 

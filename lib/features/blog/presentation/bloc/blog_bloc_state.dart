@@ -13,3 +13,8 @@ final class BlogFailure extends BlogBlocState {
 }
 
 final class BlogSuccess extends BlogBlocState {}
+
+final class BlogFetchAllBlogsSuccess extends BlogBlocState {
+  final List<Blog> blogs;
+  BlogFetchAllBlogsSuccess(this.blogs);
+}

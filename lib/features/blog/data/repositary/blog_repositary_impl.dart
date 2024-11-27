@@ -34,10 +34,23 @@ class BlogRepositaryImpl implements BlogRepositary {
         image: image,
         blog: blogModel,
       );
-      blogModel.copyWith(imageUrl: supaBaseImegUrl);
+      blogModel = blogModel.copyWith(imageUrl: supaBaseImegUrl);
+
       final blog = await remoteDataSource.uploadBlog(blogModel);
       return right(blog);
     } on ServerExecption catch (e) {
+      return left(
+        Failure(e.toString()),
+      );
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<Blog>>> getAllBlogs() async {
+    try {
+      final blogModels = await remoteDataSource.getAllBlogs();
+      return right(blogModels);
+    } catch (e) {
       return left(
         Failure(e.toString()),
       );
