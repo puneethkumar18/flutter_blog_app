@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:blog_app/features/blog/domain/entities/blog.dart';
 
 class BlogModel extends Blog {
@@ -12,6 +10,26 @@ class BlogModel extends Blog {
     required super.topics,
     required super.updatedAt,
   });
+
+  BlogModel copyWith({
+    String? id,
+    String? posterID,
+    String? title,
+    String? content,
+    String? imageUrl,
+    List<String>? topics,
+    DateTime? updatedAt,
+  }) {
+    return BlogModel(
+      id: id ?? this.id,
+      posterID: posterID ?? this.posterID,
+      title: title ?? this.title,
+      content: content ?? this.content,
+      imageUrl: imageUrl ?? this.imageUrl,
+      topics: topics ?? this.topics,
+      updatedAt: updatedAt ?? this.updatedAt,
+    );
+  }
 
   Map<String, dynamic> toJson() {
     final result = <String, dynamic>{};
