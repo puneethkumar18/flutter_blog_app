@@ -19,6 +19,7 @@ abstract interface class AuthRemoteDataSource {
 
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   final SupabaseClient supabaseClient;
+
   AuthRemoteDataSourceImpl(this.supabaseClient);
 
   @override
@@ -58,6 +59,8 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
         throw const ServerExecption("user is null !");
       }
       return UserModel.fromJson(response.user!.toJson());
+    } on AuthException catch (e) {
+      throw ServerExecption(e.toString());
     } catch (e) {
       throw ServerExecption(e.toString());
     }
